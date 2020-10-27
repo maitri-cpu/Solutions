@@ -1,0 +1,32 @@
+import kotlin.random.Random
+
+fun main(args : Array<String>)
+{
+    var arr = IntArray(10)
+
+    for(i in 0..arr.size-1)
+        arr[i]=(Random.nextInt(1,100))
+
+    println("PreArray : ")
+    for(x in arr)print("$x ")
+
+    insertionSortRecursive(arr,arr.size)
+
+    println("\nSorted Array : ")
+    for(x in arr)print("$x ")
+}
+
+fun insertionSortRecursive(arr: IntArray, n: Int) {
+    if (n <= 1)
+        return
+    insertionSortRecursive(arr, n - 1)
+
+    val last = arr[n - 1]
+    var j = n - 2
+
+    while (j >= 0 && arr[j] > last) {
+        arr[j + 1] = arr[j]
+        j--
+    }
+    arr[j + 1] = last
+}
